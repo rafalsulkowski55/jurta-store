@@ -117,8 +117,8 @@ export default function Stories() {
           .story-body { font-size: 15px; max-width: 100%; margin-bottom: 32px; }
           .story-stats { gap: 28px; }
           .story-stat-val { font-size: 26px; }
-          .story-media-video { display: none !important; }
-          .story-media-webp { display: block !important; }
+          .story-media-video { display: block !important; }
+          .story-media-webp { display: none !important; }
         }
       `}</style>
       <div>

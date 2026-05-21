@@ -25,8 +25,8 @@ export default function Hero() {
           .hero-sub { font-size: 15px; max-width: 100%; }
           .hero-side { display: none; }
           .hero-cta { flex-direction: column; align-items: flex-start !important; }
-          .hero-video { display: none; }
-          .hero-webp { display: block; }
+          .hero-video { display: block; }
+          .hero-webp { display: none; }
         }
       `}</style>
 
