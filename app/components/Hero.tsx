@@ -36,6 +36,7 @@ export default function Hero() {
         disablePictureInPicture
         controls={false}
         className="hero-video"
+        preload="auto"
       >
         <source src="/hero.mp4" type="video/mp4" />
       </video>
