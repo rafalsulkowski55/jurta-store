@@ -40,51 +40,34 @@ const stories = [
 
 function StorySection({ story }: { story: typeof stories[0] }) {
   const videoRef = useRef<HTMLVideoElement>(null)
-
   useEffect(() => {
     if (videoRef.current) videoRef.current.play().catch(() => {})
   }, [])
 
   return (
-    <div id={story.num === '01' ? 'story' : undefined} style={{
-      display: 'grid', gridTemplateColumns: '1fr 1fr',
-      borderBottom: '0.5px solid rgba(237,232,224,0.1)',
-      minHeight: '100vh', direction: story.reverse ? 'rtl' : 'ltr',
-    }}>
-      <div style={{ position: 'relative', overflow: 'hidden', direction: 'ltr' }}>
+    <div id={story.num === '01' ? 'story' : undefined} className={`story-section${story.reverse ? ' story-reverse' : ''}`}>
+      <div className="story-media">
         {story.video ? (
-          <video
-            ref={videoRef}
-            autoPlay muted loop playsInline
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
-          >
+          <video ref={videoRef} autoPlay muted loop playsInline className="story-media-inner">
             <source src={story.video} type="video/mp4" />
           </video>
         ) : story.image ? (
-          <Image
-            src={story.image} alt={story.label} fill
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
-          />
+          <Image src={story.image} alt={story.label} fill className="story-media-inner" style={{ objectFit: 'cover', objectPosition: 'center' }} />
         ) : null}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: story.reverse
-            ? 'linear-gradient(to left, transparent 40%, #0c0b09 100%)'
-            : 'linear-gradient(to right, transparent 40%, #0c0b09 100%)',
-        }} />
-        <span style={{ position: 'absolute', bottom: 32, left: 32, fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(237,232,224,0.35)', zIndex: 2 }}>{story.label}</span>
-        <span style={{ position: 'absolute', top: 32, right: 32, fontFamily: 'var(--font-cormorant)', fontSize: 100, fontWeight: 300, color: 'rgba(201,169,110,0.08)', zIndex: 2, lineHeight: 1 }}>{story.num}</span>
+        <div className={`story-fade${story.reverse ? ' story-fade-rev' : ''}`} />
+        <span className="story-label">{story.label}</span>
+        <span className="story-num" aria-hidden="true">{story.num}</span>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '80px 72px', direction: 'ltr' }}>
-        <p style={{ fontSize: 12, letterSpacing: '0.28em', textTransform: 'uppercase', color: '#c9a96e', marginBottom: 22 }}>{story.eyebrow}</p>
-        <h2 style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(36px, 4vw, 56px)', fontWeight: 300, lineHeight: 1.15, color: '#ede8e0', marginBottom: 28, whiteSpace: 'pre-line' }}>{story.title}</h2>
-        <p style={{ fontSize: 16, lineHeight: 2, color: 'rgba(237,232,224,0.55)', marginBottom: 44, maxWidth: 400 }}>{story.body}</p>
-        <div style={{ borderTop: '0.5px solid rgba(237,232,224,0.1)', paddingTop: 28, display: 'flex', gap: 40 }}>
+      <div className="story-text">
+        <p className="story-eyebrow">{story.eyebrow}</p>
+        <h2 className="story-title">{story.title}</h2>
+        <p className="story-body">{story.body}</p>
+        <div className="story-stats">
           {story.stats.map(s => (
             <div key={s.label}>
-              <div style={{ fontFamily: 'var(--font-cormorant)', fontSize: 32, fontWeight: 300, color: '#c9a96e', lineHeight: 1 }}>{s.val}</div>
-              <div style={{ fontSize: 11, letterSpacing: '0.13em', textTransform: 'uppercase', color: 'rgba(237,232,224,0.3)', marginTop: 6 }}>{s.label}</div>
+              <div className="story-stat-val">{s.val}</div>
+              <div className="story-stat-lbl">{s.label}</div>
             </div>
           ))}
         </div>
@@ -95,8 +78,47 @@ function StorySection({ story }: { story: typeof stories[0] }) {
 
 export default function Stories() {
   return (
-    <div>
-      {stories.map(story => <StorySection key={story.num} story={story} />)}
-    </div>
+    <>
+      <style>{`
+        .story-section {
+          display: grid; grid-template-columns: 1fr 1fr;
+          border-bottom: 0.5px solid rgba(237,232,224,0.1);
+          min-height: 100vh;
+          direction: ltr;
+        }
+        .story-reverse { direction: rtl; }
+        .story-reverse > * { direction: ltr; }
+        .story-media { position: relative; overflow: hidden; }
+        .story-media-inner { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+        .story-fade { position: absolute; inset: 0; background: linear-gradient(to right, transparent 40%, #0c0b09 100%); }
+        .story-fade-rev { background: linear-gradient(to left, transparent 40%, #0c0b09 100%); }
+        .story-label { position: absolute; bottom: 32px; left: 32px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(237,232,224,0.35); z-index: 2; }
+        .story-num { position: absolute; top: 32px; right: 32px; font-family: var(--font-cormorant); font-size: 100px; font-weight: 300; color: rgba(201,169,110,0.08); z-index: 2; line-height: 1; }
+        .story-text { display: flex; flex-direction: column; justify-content: center; padding: 80px 72px; direction: ltr; }
+        .story-eyebrow { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: #c9a96e; margin-bottom: 22px; }
+        .story-title { font-family: var(--font-cormorant); font-size: clamp(36px, 4vw, 56px); font-weight: 300; line-height: 1.15; color: #ede8e0; margin-bottom: 28px; white-space: pre-line; }
+        .story-body { font-size: 16px; line-height: 2; color: rgba(237,232,224,0.55); margin-bottom: 44px; max-width: 400px; }
+        .story-stats { border-top: 0.5px solid rgba(237,232,224,0.1); padding-top: 28px; display: flex; gap: 40px; }
+        .story-stat-val { font-family: var(--font-cormorant); font-size: 32px; font-weight: 300; color: #c9a96e; line-height: 1; }
+        .story-stat-lbl { font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(237,232,224,0.3); margin-top: 6px; }
+
+        @media (max-width: 768px) {
+          .story-section { grid-template-columns: 1fr; min-height: auto; direction: ltr !important; }
+          .story-reverse { direction: ltr !important; }
+          .story-media { height: 60vw; min-height: 280px; }
+          .story-fade { background: linear-gradient(to bottom, transparent 40%, #0c0b09 100%) !important; }
+          .story-num { font-size: 60px; }
+          .story-label { font-size: 10px; bottom: 16px; left: 20px; }
+          .story-text { padding: 40px 28px; }
+          .story-title { font-size: clamp(28px, 8vw, 44px); white-space: pre-line; }
+          .story-body { font-size: 15px; max-width: 100%; margin-bottom: 32px; }
+          .story-stats { gap: 28px; }
+          .story-stat-val { font-size: 26px; }
+        }
+      `}</style>
+      <div>
+        {stories.map(story => <StorySection key={story.num} story={story} />)}
+      </div>
+    </>
   )
 }
