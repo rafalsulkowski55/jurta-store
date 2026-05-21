@@ -20,13 +20,13 @@ export default function Hero() {
         .hero-webp { display: none; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
         @keyframes pulse { 0%,100%{opacity:.3;height:48px}50%{opacity:1;height:64px} }
         @media (max-width: 768px) {
-          .hero-content { width: 100%; padding: 0 28px; bottom: 32px; }
-          .hero-title { font-size: clamp(36px, 10vw, 60px); white-space: normal; margin-bottom: 16px; }
+          .hero-content { width: 100%; padding: 0 28px; bottom: auto; top: 50%; transform: translateY(-50%); }
+          .hero-title { font-size: clamp(40px, 11vw, 64px); white-space: normal; margin-bottom: 16px; }
           .hero-sub { font-size: 14px; max-width: 100%; }
           .hero-side { display: none; }
           .hero-cta { flex-direction: column; align-items: flex-start !important; gap: 16px !important; margin-top: 24px !important; }
-          .hero-video { display: block; }
-          .hero-webp { display: none; }
+          .hero-video { display: none !important; }
+          .hero-webp { display: block !important; }
           .hero-badge { display: none !important; }
         }
       `}</style>
