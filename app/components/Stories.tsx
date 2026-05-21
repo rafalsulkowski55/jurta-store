@@ -48,7 +48,7 @@ function StorySection({ story }: { story: typeof stories[0] }) {
     <div id={story.num === '01' ? 'story' : undefined} className={`story-section${story.reverse ? ' story-reverse' : ''}`}>
       <div className="story-media">
         {story.video ? (
-          <video ref={videoRef} autoPlay muted loop playsInline className="story-media-inner">
+          <video ref={videoRef} autoPlay muted loop playsInline disablePictureInPicture controls={false} className="story-media-inner" style={{ pointerEvents: 'none' }}>
             <source src={story.video} type="video/mp4" />
           </video>
         ) : story.image ? (
@@ -119,6 +119,7 @@ export default function Stories() {
       <div>
         {stories.map(story => <StorySection key={story.num} story={story} />)}
       </div>
+
     </>
   )
 }

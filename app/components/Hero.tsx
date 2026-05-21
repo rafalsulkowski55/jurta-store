@@ -26,7 +26,7 @@ export default function Hero() {
         }
       `}</style>
 
-      <video ref={videoRef} autoPlay muted loop playsInline style={{
+      <video ref={videoRef} autoPlay muted loop playsInline disablePictureInPicture controls={false} style={{ pointerEvents: 'none',
         position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
       }}>
         <source src="/hero.mp4" type="video/mp4" />
