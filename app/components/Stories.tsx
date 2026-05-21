@@ -34,7 +34,7 @@ const stories = [
     body: 'Kirgistańskie wzory to alfabet - koła symbolizują jurty i wieczność, rogi jelenia - siłę, spirale - wodę i czas. Żadne dwa dywany nie są identyczne, bo żadna tkaczka nie opowiada tej samej historii.',
     stats: [{ val: '40+', label: 'Tradycyjnych wzorów' }, { val: '1/1', label: 'Każdy egzemplarz' }],
     reverse: false,
-    video: '/download.mp4',
+    video: 'https://pub-be6c62dac75f4a0a8c76d280bffeeb2b.r2.dev/story-03.mp4',
   },
 ]
 

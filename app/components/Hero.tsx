@@ -38,7 +38,7 @@ export default function Hero() {
         className="hero-video"
         preload="auto"
       >
-        <source src="/hero.mp4" type="video/mp4" />
+        <source src="https://pub-be6c62dac75f4a0a8c76d280bffeeb2b.r2.dev/11716405-uhd_3840_2160_24fps.mp4" type="video/mp4" />
       </video>
 
       <img src="/hero-mobile.webp" alt="" className="hero-webp" />
