@@ -48,9 +48,12 @@ function StorySection({ story }: { story: typeof stories[0] }) {
     <div id={story.num === '01' ? 'story' : undefined} className={`story-section${story.reverse ? ' story-reverse' : ''}`}>
       <div className="story-media">
         {story.video ? (
-          <video ref={videoRef} autoPlay muted loop playsInline disablePictureInPicture controls={false} className="story-media-inner" style={{ pointerEvents: 'none' }}>
-            <source src={story.video} type="video/mp4" />
-          </video>
+          <>
+            <video ref={videoRef} autoPlay muted loop playsInline disablePictureInPicture controls={false} className="story-media-inner story-media-video" style={{ pointerEvents: 'none' }}>
+              <source src={story.video} type="video/mp4" />
+            </video>
+            <img src="/story03-mobile.webp" alt="" className="story-media-inner story-media-webp" />
+          </>
         ) : story.image ? (
           <Image src={story.image} alt={story.label} fill className="story-media-inner" style={{ objectFit: 'cover', objectPosition: 'center' }} />
         ) : null}
@@ -101,7 +104,7 @@ export default function Stories() {
         .story-stats { border-top: 0.5px solid rgba(237,232,224,0.1); padding-top: 28px; display: flex; gap: 40px; }
         .story-stat-val { font-family: var(--font-cormorant); font-size: 32px; font-weight: 300; color: #c9a96e; line-height: 1; }
         .story-stat-lbl { font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(237,232,224,0.3); margin-top: 6px; }
-
+        .story-media-webp { display: none; }
         @media (max-width: 768px) {
           .story-section { grid-template-columns: 1fr; min-height: auto; direction: ltr !important; }
           .story-reverse { direction: ltr !important; }
@@ -114,12 +117,13 @@ export default function Stories() {
           .story-body { font-size: 15px; max-width: 100%; margin-bottom: 32px; }
           .story-stats { gap: 28px; }
           .story-stat-val { font-size: 26px; }
+          .story-media-video { display: none !important; }
+          .story-media-webp { display: block !important; }
         }
       `}</style>
       <div>
         {stories.map(story => <StorySection key={story.num} story={story} />)}
       </div>
-
     </>
   )
 }
