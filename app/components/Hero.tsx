@@ -20,7 +20,7 @@ export default function Hero() {
         .hero-webp { display: none; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
         @keyframes pulse { 0%,100%{opacity:.3;height:48px}50%{opacity:1;height:64px} }
         @media (max-width: 768px) {
-          .hero-content { width: 100%; padding: 0 28px 60px; }
+          .hero-content { width: 100%; padding: 0 28px 0; position: absolute; bottom: 40px; }
           .hero-title { font-size: clamp(44px, 12vw, 72px); white-space: normal; }
           .hero-sub { font-size: 15px; max-width: 100%; }
           .hero-side { display: none; }
