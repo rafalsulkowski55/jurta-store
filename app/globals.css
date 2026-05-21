@@ -10,3 +10,13 @@ body {
   overflow-x: hidden;
   cursor: none;
 }
+
+video::-webkit-media-controls {
+  display: none !important;
+}
+video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+video::-webkit-media-controls-panel {
+  display: none !important;
+}
