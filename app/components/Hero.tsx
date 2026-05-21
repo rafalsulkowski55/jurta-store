@@ -9,9 +9,9 @@ export default function Hero() {
   }, [])
 
   return (
-    <section style={{ position: 'relative', height: '100vh', minHeight: 700, overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
+    <section style={{ position: 'relative', height: '100vh', minHeight: 700, overflow: 'hidden' }}>
       <style>{`
-        .hero-content { position: relative; z-index: 2; width: 60%; padding: 0 60px 80px; }
+        .hero-content { position: absolute; bottom: 80px; left: 0; z-index: 2; width: 60%; padding: 0 60px; }
         .hero-title { font-family: var(--font-cormorant); font-size: clamp(60px, 7.5vw, 110px); font-weight: 300; line-height: 0.98; color: #ede8e0; margin-bottom: 30px; white-space: nowrap; }
         .hero-sub { font-size: 14px; line-height: 1.85; max-width: 500px; color: rgba(237,232,224,0.55); }
         .hero-side { position: absolute; right: 60px; bottom: 80px; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 12px; }
@@ -20,13 +20,14 @@ export default function Hero() {
         .hero-webp { display: none; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
         @keyframes pulse { 0%,100%{opacity:.3;height:48px}50%{opacity:1;height:64px} }
         @media (max-width: 768px) {
-          .hero-content { width: 100%; padding: 0 28px 0; position: absolute; bottom: 40px; }
-          .hero-title { font-size: clamp(44px, 12vw, 72px); white-space: normal; }
-          .hero-sub { font-size: 15px; max-width: 100%; }
+          .hero-content { width: 100%; padding: 0 28px; bottom: 32px; }
+          .hero-title { font-size: clamp(36px, 10vw, 60px); white-space: normal; margin-bottom: 16px; }
+          .hero-sub { font-size: 14px; max-width: 100%; }
           .hero-side { display: none; }
-          .hero-cta { flex-direction: column; align-items: flex-start !important; }
+          .hero-cta { flex-direction: column; align-items: flex-start !important; gap: 16px !important; margin-top: 24px !important; }
           .hero-video { display: block; }
           .hero-webp { display: none; }
+          .hero-badge { display: none !important; }
         }
       `}</style>
 
@@ -53,7 +54,7 @@ export default function Hero() {
           <a href="#" style={{ padding: '15px 44px', background: '#c9a96e', color: '#0c0b09', fontFamily: 'var(--font-jost)', fontSize: 10, fontWeight: 400, letterSpacing: '0.22em', textTransform: 'uppercase', textDecoration: 'none' }}>Odkryj kolekcję</a>
           <a href="#story" style={{ fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(237,232,224,0.55)', textDecoration: 'none', borderBottom: '0.5px solid rgba(237,232,224,0.2)', paddingBottom: 2 }}>Czytaj historię →</a>
         </div>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, border: '0.5px solid rgba(201,169,110,0.25)', padding: '9px 20px', marginTop: 24, fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(201,169,110,0.6)' }}>
+        <div className="hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, border: '0.5px solid rgba(201,169,110,0.25)', padding: '9px 20px', marginTop: 24, fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(201,169,110,0.6)' }}>
           <div style={{ width: 5, height: 5, borderRadius: '50%', background: 'rgba(201,169,110,0.35)' }} />
           Niematerialne dziedzictwo UNESCO
         </div>
