@@ -18,7 +18,7 @@ export default function Hero() {
         .hero-scroll-line { width: 0.5px; height: 48px; background: rgba(201,169,110,0.35); animation: pulse 2.5s ease-in-out infinite; }
         @keyframes pulse { 0%,100%{opacity:.3;height:48px}50%{opacity:1;height:64px} }
         @media (max-width: 768px) {
-          .hero-content { width: 100%; padding: 0 28px 60px; }
+          .hero-content { width: 100%; padding: 28px 28px 60px; align-self: flex-end; }
           .hero-title { font-size: clamp(44px, 12vw, 72px); white-space: normal; }
           .hero-sub { font-size: 15px; max-width: 100%; }
           .hero-side { display: none; }
@@ -26,12 +26,20 @@ export default function Hero() {
         }
       `}</style>
 
-      <video ref={videoRef} autoPlay muted loop playsInline disablePictureInPicture controls={false} style={{ pointerEvents: 'none',
-        position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
-      }}>
+      <video
+        ref={videoRef}
+        autoPlay muted loop playsInline
+        disablePictureInPicture
+        controls={false}
+        style={{
+          position: 'absolute', inset: 0, width: '100%', height: '100%',
+          objectFit: 'cover', pointerEvents: 'none',
+        }}
+      >
         <source src="/hero.mp4" type="video/mp4" />
       </video>
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(12,11,9,0.88) 0%, rgba(12,11,9,0.6) 40%, rgba(12,11,9,0.15) 100%)' }} />
+
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(12,11,9,0.3) 0%, rgba(12,11,9,0.5) 40%, rgba(12,11,9,0.85) 100%)' }} />
 
       <div className="hero-content">
         <p style={{ fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c9a96e', marginBottom: 22 }}>The Heritage - Kirgistan</p>
